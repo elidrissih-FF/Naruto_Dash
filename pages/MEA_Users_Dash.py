@@ -23,7 +23,7 @@ def load_data(csv):
     for c in pct_cols:
         df[c] = df[c].str.replace("%", "", regex=False)
         df[c] = pd.to_numeric(df[c], errors="coerce") / 100
-    num_cols = df.columns.drop(["Date", "Region"])
+    num_cols = df.columns.drop(["Date"])
     df[num_cols] = df[num_cols].apply(pd.to_numeric, errors="coerce")
     df["Year"] = df["Date"].dt.year
     df["MonthDay"] = pd.to_datetime(
