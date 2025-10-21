@@ -58,35 +58,41 @@ fig = px.line(
     df,
     x="MonthDay", y=metric, color="Year",
     hover_name="Date",
-    title=dict(
-        text=f"{metric} – Year‑over‑Year Trend (Overall MEA)",
-        font=dict(color="white"),
-        xanchor="center"
-    )
+    title=f"{metric} – Year‑over‑Year Trend (Overall MEA)",
     template="plotly_dark",
     color_discrete_sequence=px.colors.qualitative.Vivid,
     height=600
 )
-fig.update_xaxes(dtick="M1", tickformat="%b", title=None)
-fig.update_yaxes(title=metric)
+fig.update_xaxes(dtick="M1", tickformat="%b")
 fig.update_layout(
-    plot_bgcolor="#111111",
-    paper_bgcolor="#111111",
-    font=dict(color="white", family="Orbitron, sans‑serif"),
-    legend=dict(x=1.02, y=1, xanchor="left", font=dict(color="white")),
+    plot_bgcolor="#111111", paper_bgcolor="#111111",
+    legend=dict(
+            x=1.02, y=1, xanchor="left",
+            font=dict(color="white")
+        ),
     hovermode="closest"
 )
 
-# Highlight Naruto Chapter 2 campaign (July 30 – Aug 31)
-fig.add_vrect(
-    x0="2000-07-30", x1="2000-08-31",
-    fillcolor="orange", opacity=0.15, line_width=0,
-    annotation_text="NB2 Period",
-    annotation_position="top left",
-    annotation_font_color="white"
+fig.update_layout(
+        plot_bgcolor="#111111",
+        paper_bgcolor="#111111",
+        margin=dict(l=60, r=200, t=60, b=60),
+        legend=dict(
+            x=1.02, y=1, xanchor="left",
+            font=dict(color="white")
+        ),
+        hovermode="closest"
+    )
+# make every label/text white
+fig.update_layout(
+    font=dict(color="white"),
+    title_font_color="white",
+    legend_font=dict(color="white"),
+    paper_bgcolor="#111111",
+    plot_bgcolor="#111111"
 )
 
-# Make sure ticks / annotations are white
+# axis labels & ticks
 fig.update_xaxes(title_font_color="white", tickfont_color="white")
 fig.update_yaxes(title_font_color="white", tickfont_color="white")
 for ann in fig.layout.annotations:
