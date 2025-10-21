@@ -98,5 +98,9 @@ fig.update_yaxes(title_font_color="white", tickfont_color="white")
 for ann in fig.layout.annotations:
     ann.font.color = "white"
 
+fig.add_vrect(x0="2000-07-30", x1="2000-08-31",
+              fillcolor="orange", opacity=0.15, line_width=0,
+              annotation_text="NB2 Period", annotation_position="top left")
+
 st.plotly_chart(fig, use_container_width=True)
 st.caption("Jan → Dec overlay by year; orange zone = 2025 Naruto Chapter 2 campaign.")
