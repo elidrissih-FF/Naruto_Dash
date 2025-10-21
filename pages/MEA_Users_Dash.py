@@ -31,7 +31,7 @@ def load_data(csv):
     )
     return df
 
-df = load_data("nb2.csv")
+df = load_data("ME_Users.csv")
 st.write("✅ Data loaded:", df.shape)
 st.dataframe(df, use_container_width=True, height=600)
 
