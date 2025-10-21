@@ -55,55 +55,38 @@ metric = st.selectbox("Select Metric", metrics)
 # Main plot
 # ---------------------------------------------------------------
 fig = px.line(
-    df, x="DisplayDate", y=metric, color="Year",
-    facet_col="Match Mode", facet_col_wrap=1,
-    hover_name="Date", template="plotly_dark",
+    df,
+    x="MonthDay", y=metric, color="Year",
+    hover_name="Date",
+    title=f"{metric} – Year‑over‑Year Trend (Overall MEA)",
+    template="plotly_dark",
     color_discrete_sequence=px.colors.qualitative.Vivid,
-    height=700,
-    title=f"{metric} – Year‑over‑Year Overlay by Match Mode"
+    height=600
 )
-fig.update_xaxes(dtick="M1", tickformat="%b")
+fig.update_xaxes(dtick="M1", tickformat="%b", title=None)
+fig.update_yaxes(title=metric)
 fig.update_layout(
-    plot_bgcolor="#111111", paper_bgcolor="#111111",
-    legend=dict(
-            x=1.02, y=1, xanchor="left",
-            font=dict(color="white")
-        ),
+    plot_bgcolor="#111111",
+    paper_bgcolor="#111111",
+    font=dict(color="white", family="Orbitron, sans‑serif"),
+    legend=dict(x=1.02, y=1, xanchor="left", font=dict(color="white")),
     hovermode="closest"
 )
 
-fig.update_layout(
-        plot_bgcolor="#111111",
-        paper_bgcolor="#111111",
-        margin=dict(l=60, r=200, t=60, b=60),
-        legend=dict(
-            x=1.02, y=1, xanchor="left",
-            font=dict(color="white")
-        ),
-        hovermode="closest"
-    )
-# make every label/text white
-fig.update_layout(
-    font=dict(color="white"),
-    title_font_color="white",
-    legend_font=dict(color="white"),
-    paper_bgcolor="#111111",
-    plot_bgcolor="#111111"
+# Highlight Naruto Chapter 2 campaign (July 30 – Aug 31)
+fig.add_vrect(
+    x0="2000-07-30", x1="2000-08-31",
+    fillcolor="orange", opacity=0.15, line_width=0,
+    annotation_text="NB2 Period",
+    annotation_position="top left",
+    annotation_font_color="white"
 )
 
-# axis labels & ticks
+# Make sure ticks / annotations are white
 fig.update_xaxes(title_font_color="white", tickfont_color="white")
 fig.update_yaxes(title_font_color="white", tickfont_color="white")
-
-# facet / subplot annotations (e.g. "Match Mode = Ranking Match")
 for ann in fig.layout.annotations:
     ann.font.color = "white"
-
-# shading annotation text (optional; safer in case theme defaulted to black)
-fig.update_annotations(font_color="white")
-fig.add_vrect(x0="2000-07-30", x1="2000-08-31",
-              fillcolor="orange", opacity=0.15, line_width=0,
-              annotation_text="NB2 Period", annotation_position="top left")
 
 st.plotly_chart(fig, use_container_width=True)
 st.caption("Jan → Dec overlay by year; orange zone = 2025 Naruto Chapter 2 campaign.")
