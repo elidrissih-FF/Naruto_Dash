@@ -42,23 +42,14 @@ df = load_data("Me_Users.csv")    # 👉 use the filename of your new dataset
 st.write("✅ Data loaded:", df.shape)
 st.dataframe(df, use_container_width=True, height=500)
 
-# ---------------------------------------------------------------
-# Metric selector
-# ---------------------------------------------------------------
-metrics = [
-    "A1", "A7", "A30", "AR2", "AR7", "AR30",
-    "New User", "NU R2", "NU R7", "NU R30",
-    "Revival7", "Revival30",
-    "Revival7 R7", "Revival30 R7", "Revival30 R30",
-    "C7", "C30", "C7 Rate", "C30 Rate",
-    "Retained 7", "Retained 30",
-    "New User A7", "New User A30",
-    "Revival 7 A7", "Revival 30 A30"
-]
+# auto‑detect usable metric columns (non‑datetime, non‑object categories)
+# exclude helper columns like 'Year', 'MonthDay' if you added them
+# build metrics list automatically
+drop_cols = ["Year", "MonthDay", "EO Month"]
+metrics = [c for c in df.columns
+            if pd.api.types.is_numeric_dtype(df[c]) and c not in drop_cols]
 
-st.write("Columns:", list(df.columns))
-
-metric = st.selectbox("Select Metric", metrics)
+metric = st.selectbox("Select Metric", metrics)
 
 # ---------------------------------------------------------------
 # Main plot
