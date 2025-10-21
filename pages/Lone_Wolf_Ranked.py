@@ -35,6 +35,8 @@ def load_data(path):
     return df
 
 df = load_data("Ranked_LW.csv")
+st.write("✅ Data loaded:", df.shape)
+st.dataframe(df, use_container_width=True, height=600)
 
 # ---------------------------------------------------------------
 # Filters
