@@ -48,12 +48,15 @@ metrics = [
     "C7 Rate", "Revival7 R2", "Revival7 R30", "C30 Rate"
 ]
 
+years = st.multiselect("Select Year(s)",
+                       sorted(df["Year"].unique()),
+                       default=sorted(df["Year"].unique()))
 metric = st.selectbox("Select Metric", metrics)
 
 # ---------------------------------------------------------------
 # Plot function
 def make_plot(metric, label=None):
-    dff = df[df["Region"].isin(regions)].copy()
+    dff = df[df["Region"].isin(regions) & df["Year"].isin(years)].copy()
     fig = px.line(
         dff, x="MonthDay", y=metric, color="Year",
         facet_col="Region", facet_col_wrap=1,
@@ -97,6 +100,12 @@ def make_plot(metric, label=None):
     fig.add_vrect(x0="2000-07-30", x1="2000-08-31",
                 fillcolor="orange", opacity=0.15, line_width=0,
               annotation_text="NB2 Period", annotation_position="top left")
+    fig.add_vrect(
+    x0="2000-01-10", x1="2000-02-09",
+    fillcolor="royalblue", opacity=0.2, line_width=0,
+    annotation_text="NB1 Period", annotation_position="top left",
+    annotation_font_color="white"
+    )
     return fig
 
 # ---------------------------------------------------------------
