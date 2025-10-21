@@ -49,13 +49,19 @@ drop_cols = ["Year", "MonthDay", "EO Month"]
 metrics = [c for c in df.columns
             if pd.api.types.is_numeric_dtype(df[c]) and c not in drop_cols]
 
+years = st.multiselect("Select Year(s)",
+                       sorted(df["Year"].unique()),
+                       default=sorted(df["Year"].unique()))
+
 metric = st.selectbox("Select Metric", metrics)
+
+dff = df[df["Year"].isin(years)]
 
 # ---------------------------------------------------------------
 # Main plot
 # ---------------------------------------------------------------
 fig = px.line(
-    df,
+    dff,
     x="MonthDay", y=metric, color="Year",
     hover_name="Date",
     title=f"{metric} – Year‑over‑Year Trend (Overall MEA)",
