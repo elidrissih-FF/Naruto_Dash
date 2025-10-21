@@ -59,6 +59,7 @@ fig = px.line(
     x="MonthDay", y=metric, color="Year",
     hover_name="Date",
     title=f"{metric} – Year‑over‑Year Trend (Overall MEA)",
+    font=dict(color="white"),
     template="plotly_dark",
     color_discrete_sequence=px.colors.qualitative.Vivid,
     height=600
