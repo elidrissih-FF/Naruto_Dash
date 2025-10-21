@@ -55,6 +55,9 @@ metrics = [
     "New User A7", "New User A30",
     "Revival 7 A7", "Revival 30 A30"
 ]
+
+st.write("Columns:", list(df.columns))
+
 metric = st.selectbox("Select Metric", metrics)
 
 # ---------------------------------------------------------------
