@@ -45,7 +45,7 @@ metrics = [
     "NU R2", "NU R7", "NU R30",
     "Revival7", "Revival30",
     "Revival7 R7", "Revival30 R7", "Revival30 R30", "Revival30 R30",
-    "C7 Rate", "Revival7 R2", "Revival7 R30" "C30 Rate"
+    "C7 Rate", "Revival7 R2", "Revival7 R30", "C30 Rate"
 ]
 
 metric = st.selectbox("Select Metric", metrics)
