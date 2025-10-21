@@ -38,7 +38,7 @@ def load_data(path):
                                     errors="coerce")
     return df
 
-df = load_data("Me_Users.csv")    # 👉 use the filename of your new dataset
+df = load_data("ME_Users.csv")    # 👉 use the filename of your new dataset
 st.write("✅ Data loaded:", df.shape)
 st.dataframe(df, use_container_width=True, height=500)
 
