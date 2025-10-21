@@ -42,9 +42,9 @@ regions = st.multiselect("Select Regions", options=df["Region"].unique(),
 metrics = [
     "A1", "A7", "A30", "AR2", "AR7", "AR30",
     "New User", "New User A7", "New User A30", "Retained 30", "Retained 7", "Revival 30 A30",
-    "NU R2", "NU R7", "NU R30",
+    "NU R2", "NU R7", "NU R30", "C7", "C30",
     "Revival7", "Revival30",
-    "Revival7 R7", "Revival30 R7", "Revival30 R30", "Revival30 R30",
+    "Revival7 R7", "Revival30 R7", "Revival30 R30",
     "C7 Rate", "Revival7 R2", "Revival7 R30", "C30 Rate"
 ]
 
