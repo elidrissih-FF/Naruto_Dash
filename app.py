@@ -106,6 +106,8 @@ def make_plot(metric, label=None):
     annotation_text="NB1 Period", annotation_position="top left",
     annotation_font_color="white"
     )
+
+    
     return fig
 
 # ---------------------------------------------------------------

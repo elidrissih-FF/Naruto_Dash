@@ -89,6 +89,12 @@ fig.update_annotations(font_color="white")
 fig.add_vrect(x0="2000-07-30", x1="2000-08-31",
               fillcolor="orange", opacity=0.15, line_width=0,
               annotation_text="NB2 Period", annotation_position="top left")
+fig.add_vrect(
+x0="2000-01-10", x1="2000-02-09",
+fillcolor="royalblue", opacity=0.2, line_width=0,
+annotation_text="NB1 Period", annotation_position="top left",
+annotation_font_color="white"
+)
 
 st.plotly_chart(fig, use_container_width=True)
 st.caption("Monthly overlay (Jan–Dec). Orange highlight = Naruto Chapter 2 campaign.")
